@@ -4,13 +4,23 @@
 
 #include "criarArvoreB/criarArvoreB.c"
 
+typedef struct {
+    
+    int quantidadeDeChaves;
+    char chave[MAXCHAVE];
+    int filhos[MAXCHAVE + 1];
+} PAG;
+
+
 
 int main(int argc, char *argv[]) {
+
+    PAG PAG;
 
     if (argc == 3 && strcmp(argv[1], "-c") == 0) {
 
         printf("criação da arvore B ativada no arquivo = %s\n", argv[2]);
-        criarArvoreB(argv[2]);
+        criarArvoreB(argv[2], PAG);
 
     } else if (argc == 3 && strcmp(argv[1], "-p") == 0) {
 
