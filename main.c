@@ -3,14 +3,7 @@
 #include <string.h>
 
 #include "criarArvoreB/criarArvoreB.c"
-
-typedef struct {
-    
-    int quantidadeDeChaves;
-    char chave[MAXCHAVE];
-    int filhos[MAXCHAVE + 1];
-} PAG;
-
+#include "struct.h"
 
 
 int main(int argc, char *argv[]) {
@@ -20,7 +13,7 @@ int main(int argc, char *argv[]) {
     if (argc == 3 && strcmp(argv[1], "-c") == 0) {
 
         printf("criação da arvore B ativada no arquivo = %s\n", argv[2]);
-        criarArvoreB(argv[2], PAG);
+        criarArvoreB(argv[2]);
 
     } else if (argc == 3 && strcmp(argv[1], "-p") == 0) {
 
@@ -29,7 +22,7 @@ int main(int argc, char *argv[]) {
 
     } else if (argc == 2 && strcmp(argv[1], "-k") == 0) {
 
-        printf("impressão das chaves em ordem crescente no arquivo %s\n", argv[2]);
+        printf("impressão das chaves em ordem crescente do arquivo %s\n", argv[2]);
 
     } else {
 

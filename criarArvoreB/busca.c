@@ -1,24 +1,40 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "struct.h"
 
-#define encontrado 1
-#define naoEncontrado 0
+int busca(int rrn,int chave,int  *rrn_encontrado,int *pos_encontrada){
+    PAG pag;
 
-int busca (int rrn,int chave,int  *rrn_encontrado,int *pos_encontrada){
     if(rrn < 0){
         return naoEncontrado;
     }
-    PAGINA pag;
-    pag.contachaves =  rrn;
+    
+    pag.quantidadeDeChaves =  rrn;
     int pos = 0;
     int result = busca_na_pagina(chave, pag, &pos);
+
     if(result == encontrado){
-        *rrn_encontrado = rrn;  /* rrn da página que contém a chave */
-        *pos_encontrada = pos;  /* posição da chave na página*/
+
+        *rrn_encontrado = rrn;  
+        *pos_encontrada = pos;
         return encontrado;
     }
-    else{ /* siga o ponteiro para a próxima página da busca */
-        return(busca(pag.filho[pos],chave,rrn_encontrado,pos_encontrada));
+    else return(busca(pag.filhos[pos],chave,rrn_encontrado,pos_encontrada));
+        
+    
+}
+
+int busca_na_pagina(int chave,PAG PAG,int *POS){
+    int i=0;
+    while((i < PAG.quantidadeDeChaves) && (chave > PAG.chave[i])){
+        i++;
+    }
+    *POS = i;
+    if((*POS < PAG.quantidadeDeChaves) && (chave == PAG.chave[*POS])){
+        return encontrado;
+    }
+    else{
+        return naoEncontrado;
     }
 }

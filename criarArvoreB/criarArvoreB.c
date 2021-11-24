@@ -1,18 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "struct.h"
 
-#define ComPromocao 2
-
-#include "leEescrevePagina.c"
 #include "insere.c"
+#include "busca.c"
 
 
-void criarArvoreB(char Arquivo[], PAG novaPagina){
+
+void criarArvoreB(char Arquivo[]){
 
     FILE *entrada;
     FILE *Btree;
-    PAG novaPagina;
     char chave;
     int rrn_Pagina_Atual,chave,aux,filho_d_pro,chave_promovida,rrn;
 

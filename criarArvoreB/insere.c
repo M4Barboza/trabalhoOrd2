@@ -1,14 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define MAXCHAVE 5
-#define erro "erro"
-#define encontrado 1
-#define naoEncontrado 0
-#define ComPromocao 2
-#define semPromocao 3
-#define delimitador "|"
-#define qtdDeCampos 4
+#include "struct.h"
+
 
 int insere(int rrn_Pagina_Atual,char chave,int *pagina_filha_da_direita,int *chave_promovida, PAG pagina){
     

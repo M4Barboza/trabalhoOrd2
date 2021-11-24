@@ -1,31 +1,44 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "struct.h"
 
-void divide(int chave,int filho_d,PAGINA *pag, int *chave_pro,int *filho_d_pro,PAGINA *novapag){
-    PAGINA pagaux;
-    pagaux = copiar_pag(pag);//copie PAG para PAGAUX  
-    /* Insira CHAVE e FILHO_D nos lugares apropriados em PAGAUX */
-    int i = ordem-1;
-    while(chave < pagaux.chave[i-1] && i>0){
-        pagaux.chave[i] = pagaux.chave[i-1];
-        pagaux.filho[i+1] = pagaux.filho[i];
+void divide(int chave,int filho_d,PAG *pag, int *chave_pro,int *filho_d_pro,PAG *novapag){
+    PAG pagina_auxiliar;
+    pagina_auxiliar = copiar_pag(pag); 
+    
+    int i = MAXCHAVE-1;
+    while(chave < pagina_auxiliar.chave[i-1] && i>0){
+        pagina_auxiliar.chave[i] = pagina_auxiliar.chave[i-1];
+        pagina_auxiliar.filhos[i+1] = pagina_auxiliar.filhos[i];
         i--;
     }
-    pagaux.chave[i] = chave;
-    pagaux.filho[i+1] = filho_d;
-    int meio = (ordem)/2;
+    pagina_auxiliar.chave[i] = chave;
+    pagina_auxiliar.filhos[i+1] = filho_d;
+    int meio = (MAXCHAVE)/2;
     int rrn;
-    *filho_d_pro = busca_na_pagina(chave,*novapag,&rrn); //faça FILHO_D_PRO receber o RRN que a NOVAPAG terá no arquivo árvore-b -> socorro !? :(
-    *chave_pro = pagaux.chave[meio];
-    /* Copie as chaves e ponteiros que vêm depois de CHAVE_PRO para NOVAPAG */
+    *filho_d_pro = busca_na_pagina(chave,*novapag,&rrn); 
+    *chave_pro = pagina_auxiliar.chave[meio];
+   
     inicializa_pagina(novapag);
     i = meio+1;
-    while(i<ordem){
-        novapag->chave[novapag->contachaves] = pagaux.chave[i];
-        novapag->filho[novapag->contachaves] = pagaux.filho[i];
-        novapag->contachaves++;
+    while(i<MAXCHAVE){
+        novapag->chave[novapag->quantidadeDeChaves] = pagina_auxiliar.chave[i];
+        novapag->filhos[novapag->quantidadeDeChaves] = pagina_auxiliar.filhos[i];
+        novapag->quantidadeDeChaves++;
         i++;
     }
-    novapag->filho[novapag->contachaves] = pagaux.filho[i];
+    novapag->filhos[novapag->quantidadeDeChaves] = pagina_auxiliar.filhos[i];
+}
+
+PAG copiar_pag(PAG *pag){
+    PAG pagina_auxiliar;
+    pagina_auxiliar.quantidadeDeChaves = pag->quantidadeDeChaves;
+    for(int i=0;i<MAXCHAVE-1;i++){
+        pagina_auxiliar.chave[i] = pag->chave[i];
+    }
+    for(int i=0;i<MAXCHAVE;i++){
+        pagina_auxiliar.filhos[i] = pag->filhos[i];
+    }
+    return pagina_auxiliar;
 }
