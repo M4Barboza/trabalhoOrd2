@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../defines.h"
-//#include "../struct.h"
 
 #include "insere.c"
 #include "busca.c"
@@ -12,7 +11,7 @@
 
 
 
-int criarArvoreB(char Arquivo[]){
+int gerenciador(char Arquivo[]){
 
     FILE *entrada;
     PAG novaPagina;

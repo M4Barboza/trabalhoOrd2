@@ -13,7 +13,7 @@ int main(int argc, char *argv[]) {
     if (argc == 3 && strcmp(argv[1], "-c") == 0) {
 
         printf("criação da arvore B ativada no arquivo = %s\n", argv[2]);
-        criarArvoreB(argv[2]);
+        gerenciador(argv[2]);
 
     } else if (argc == 3 && strcmp(argv[1], "-p") == 0) {
 

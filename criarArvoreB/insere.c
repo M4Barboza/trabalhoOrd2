@@ -3,19 +3,13 @@
 #include <string.h>
 #include "../defines.h"
 
+
 #include "lePagina.c"
 #include "busca.c"
 #include "insereNaPagina.c"
 #include "escrevePagina.c"
 #include "./dividePagina.c"
 
-void escreve_pagina(int rrn, PAG pagina){
-    FILE *arq;   
-    arq = fopen("Btree.dat","r+");
-    int byteoffset = rrn*sizeof(PAG); 
-    fseek(arq,byteoffset,SEEK_SET);
-    fwrite(&PAG,sizeof(PAG),1,arq);
-}
 
 
 int insere(int rrn_Pagina_Atual,char chave,int *pagina_filha_da_direita,int *chave_promovida){
