@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "struct.h"
+#include "../defines.h"
 
 void insere_na_pagina (int chave, int filho_direita,PAG *pag){
 

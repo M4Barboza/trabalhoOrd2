@@ -1,23 +1,37 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "struct.h"
+#include "../defines.h"
+
+#include "lePagina.c"
+#include "busca.c"
+#include "insereNaPagina.c"
+#include "escrevePagina.c"
+#include "./dividePagina.c"
+
+void escreve_pagina(int rrn, PAG pagina){
+    FILE *arq;   
+    arq = fopen("Btree.dat","r+");
+    int byteoffset = rrn*sizeof(PAG); 
+    fseek(arq,byteoffset,SEEK_SET);
+    fwrite(&PAG,sizeof(PAG),1,arq);
+}
 
 
-int insere(int rrn_Pagina_Atual,char chave,int *pagina_filha_da_direita,int *chave_promovida, PAG pagina){
+int insere(int rrn_Pagina_Atual,char chave,int *pagina_filha_da_direita,int *chave_promovida){
     
-    PAG pagina;
+    PAG pagina, novapag;
     int result = 0;
     int pos = 0;
 
-    if(rrn_Pagina_Atual == NULL){
+    if(rrn_Pagina_Atual == -1){
         *chave_promovida = chave;
-        *pagina_filha_da_direita = NULL;
+        *pagina_filha_da_direita = -1;
         return ComPromocao; 
     }
     else{
-        le_pagina(rrn_Pagina_Atual,pagina);
-        result = busca_na_pagina(chave, pagina,&pos);
+        le_pagina(rrn_Pagina_Atual,&pagina);
+        result = busca_na_pagina(chave, &pagina,&pos);
     }
 
     if(result == encontrado){

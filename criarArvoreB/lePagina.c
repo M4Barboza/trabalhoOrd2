@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "struct.h"
+#include "../defines.h"
+#include "../struct.h"
 
 
-void le_pagina(int rrn, PAG pagina){
+void le_pagina(int rrn, PAG *pagina){
     FILE *arq;   
     arq=fopen("Btree.dat","r+");
     int byteoffset = rrn*sizeof(pagina);

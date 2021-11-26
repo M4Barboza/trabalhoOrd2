@@ -1,14 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "defines.h"
 
 #include "criarArvoreB/criarArvoreB.c"
-#include "struct.h"
+#include "impressaoDasChavesOrdemCrescente.c"
+#include "impressaoArvore.c"
 
 
 int main(int argc, char *argv[]) {
-
-    PAG PAG;
 
     if (argc == 3 && strcmp(argv[1], "-c") == 0) {
 
@@ -18,11 +18,12 @@ int main(int argc, char *argv[]) {
     } else if (argc == 3 && strcmp(argv[1], "-p") == 0) {
 
         printf("Impressão da árvore-B do arquivo = %s\n", argv[2]);
-        
+        impressaoArvoreB(argv[2]);
 
     } else if (argc == 2 && strcmp(argv[1], "-k") == 0) {
 
         printf("impressão das chaves em ordem crescente do arquivo %s\n", argv[2]);
+        impressaoChavesOrdemCrescente(argv[2]);
 
     } else {
 
