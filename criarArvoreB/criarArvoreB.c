@@ -17,21 +17,33 @@ int gerenciador(char Arquivo[]){
     PAG novaPagina;
     FILE *Btree;
     int rrn_Pagina_Atual,chave,aux,filho_d_pro,chave_promovida,rrn;
+    char raiz;
 
     if ((entrada = fopen(Arquivo, "r")) == NULL){
 
         fprintf(stderr, "Erro ao abrir o arquivo %s\n", Arquivo);
         return EXIT_FAILURE;
-    }  
-    if ((Btree = fopen("Btree.dat","r+")) == NULL){
+    }
 
-        fprintf(stderr, "Erro ao abrir o arquivo Btree\n");
-        return EXIT_FAILURE;
-    }  
+    if ((Btree = fopen("Btree.dat","r+b"))){
 
-    rrn_Pagina_Atual = 0;
-    Inicializa_pagina(&novaPagina);
-    escreve_pagina(rrn_Pagina_Atual,novaPagina);
+        while (raiz != EOF)
+        {
+            raiz = fgetc(Btree);
+        }
+        
+    }
+    else {
+
+        Btree = fopen("Btree.dat","w+b");
+        raiz = 0;
+        fwrite(&raiz,sizeof(int),1,Btree);
+        Inicializa_pagina(&novaPagina);
+        escreve_pagina(rrn_Pagina_Atual,novaPagina);
+        
+
+    }
+    
 
     fseek(Btree,0,SEEK_SET);
     fread(&chave,sizeof(int),1,Btree);
