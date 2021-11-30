@@ -3,7 +3,7 @@
 #include <string.h>
 #include "defines.h"
 
-#include "criarArvoreB/criarArvoreB.c"
+#include "criarArvoreB/gerenciador.c"
 #include "impressaoDasChavesOrdemCrescente.c"
 #include "impressaoArvore.c"
 

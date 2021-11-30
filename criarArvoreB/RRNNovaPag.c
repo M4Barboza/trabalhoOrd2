@@ -5,13 +5,13 @@
 
 
 int RRN_novapag(){
-    FILE *arquivo;
-    arquivo = fopen("Btree.dat","r+b");
+    FILE *Btree;
+    Btree = fopen("Btree.dat","r+b");
     int tamanhopag = sizeof(PAG);
     int tamanhocab = sizeof(int);
-    fseek(arquivo,0,SEEK_END);
-    int byteoffset = ftell(arquivo);
-    fclose(arquivo);
+    fseek(Btree,0,SEEK_END);
+    int byteoffset = ftell(Btree);
+    fclose(Btree);
 
     return (byteoffset - tamanhocab)/tamanhopag;
 }

@@ -17,7 +17,6 @@ int gerenciador(char Arquivo[]){
     PAG novaPagina;
     FILE *Btree;
     int rrn_Pagina_Atual,chave,aux,filho_d_pro,chave_promovida,rrn;
-    char raiz;
 
     if ((entrada = fopen(Arquivo, "r")) == NULL){
 
@@ -27,28 +26,25 @@ int gerenciador(char Arquivo[]){
 
     if ((Btree = fopen("Btree.dat","r+b"))){
 
-        while (raiz != EOF)
-        {
-            raiz = fgetc(Btree);
-        }
+    
+        rrn_Pagina_Atual = fgetc(Btree);
+    
         
     }
     else {
 
         Btree = fopen("Btree.dat","w+b");
-        raiz = 0;
-        fwrite(&raiz,sizeof(int),1,Btree);
+        rrn_Pagina_Atual = 0;
+        fwrite(&rrn_Pagina_Atual,sizeof(int),1,Btree);
         Inicializa_pagina(&novaPagina);
         escreve_pagina(rrn_Pagina_Atual,novaPagina);
-        
-
     }
     
 
     fseek(Btree,0,SEEK_SET);
     fread(&chave,sizeof(int),1,Btree);
 
-    while(fscanf(Btree,"%d|",&aux)!= -1){
+    while(fscanf(Btree,"%d|",&aux)!= EOF){
         if(insere(rrn_Pagina_Atual,chave,&filho_d_pro,&chave_promovida) == ComPromocao){
             Inicializa_pagina(&novaPagina);
             novaPagina.chave[0] = chave_promovida;
@@ -58,12 +54,10 @@ int gerenciador(char Arquivo[]){
             rrn = RRN_novapag();
             rrn_Pagina_Atual = rrn; 
         }
-        fseek(Btree,sizeof(int),SEEK_CUR);
+        //fseek(Btree,sizeof(int),SEEK_CUR);
         fread(&chave,sizeof(int),1,Btree);
     }
     fwrite(&rrn_Pagina_Atual,sizeof(int),1,Btree);
     fclose(Btree);
-   
-    
 
 }
