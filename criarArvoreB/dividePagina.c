@@ -32,7 +32,7 @@ int divide(int chave,int filho_d,PAG *pag, int *chave_pro,int *filho_d_pro,PAG *
     pagina_auxiliar.filhos[i+1] = filho_d;
     int meio = (MAXCHAVE)/2;
     int rrn;
-    *filho_d_pro = busca_na_pagina(chave,&novapag,&rrn); 
+    *filho_d_pro = busca_na_pagina(chave,*novapag,&rrn); 
     *chave_pro = pagina_auxiliar.chave[meio];
    
     Inicializa_pagina(novapag);

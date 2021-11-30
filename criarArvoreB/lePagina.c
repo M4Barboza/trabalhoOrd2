@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../defines.h"
-#include "../struct.h"
+
 
 
 void le_pagina(int rrn, PAG *pagina){

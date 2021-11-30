@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../defines.h"
+//#include "../struct.h"
 
 
 #include "lePagina.c"
@@ -25,7 +26,7 @@ int insere(int rrn_Pagina_Atual,char chave,int *pagina_filha_da_direita,int *cha
     }
     else{
         le_pagina(rrn_Pagina_Atual,&pagina);
-        result = busca_na_pagina(chave, &pagina,&pos);
+        result = busca_na_pagina(chave, pagina,&pos);
     }
 
     if(result == encontrado){
